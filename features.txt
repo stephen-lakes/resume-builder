@@ -1,0 +1,36 @@
+Applicants:
+    Personal Info:
+    {
+        Firstname,
+        Lastname,
+        Email,
+        Phone,
+        Resume Title
+    }
+    
+    Experience:[
+        {
+            Company,
+            Job Title,
+            City,
+            Start Date,
+            End Date,
+            Roles:[
+                *
+                *
+            ]
+        },
+    ]
+
+    Education:
+
+    Projects:[
+        {
+            Project name,
+            Description,
+            Github Link,
+            Techonologies,
+            Live Preview
+        },
+    ]
+    Technical Skills
