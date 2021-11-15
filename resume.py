@@ -1,8 +1,8 @@
-#from docxtpl import DocxTemplate
+from docxtpl import DocxTemplate
 
 from utils import input_processor, capitalize_sentence
 
-#doc = DocxTemplate("resume_template.docx")
+doc = DocxTemplate("resume_template.docx")
 
 print("\/\/\/\/======== Professioanl Resume Builder ========\/\/\/\/\n")
 print("\t\t\tPERSONAL INFO\n")
@@ -20,7 +20,6 @@ personal_info["last_name"]  = last_name
 personal_info["phone"]      = phone
 personal_info["email"]      = email
 
-print(personal_info)
 
 print("\t\t\tEXPERIENCES\n")
 print("Lets Fill in your Work Experiences\n")
@@ -111,8 +110,29 @@ print("\t\t\tTECHNICAL SKILLS\n")
 print("\nLets Fill in your technical skills\n\t Type 'd' when you are done with this section.")
 technical_skils = []
 while True:
-        command = input("\tHint: Python, MySQL, PHP, scrum, Agile, AWS.\n\t>")
+        command = input("\tHint: Python, MySQL, PHP, scrum, Agile, AWS, Machine learning.\n\t>")
         if command.lower() == "d" or command.lower() == "done":
             break
         else:
             technical_skils.append(command)
+
+
+context = {
+    'personal_info' : personal_info,
+    'experiences'   : experiences,
+    'education_hist': education,
+    'tech_skills' : technical_skils,
+}
+
+
+
+
+
+doc.render(context)
+
+try:
+    doc.save("resume.docx")
+except:
+    print("An error occured saving the file")
+    remane = input("Remane the file to get past this error> ")
+    doc.save(f"{remane}.docx")
