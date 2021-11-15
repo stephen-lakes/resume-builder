@@ -1,28 +1,26 @@
 #from docxtpl import DocxTemplate
 
-from utils import input_processor
+from utils import input_processor, capitalize_sentence
 
 #doc = DocxTemplate("resume_template.docx")
 
-
-
-print("\/\/\/\\/======== Professioanl Resume Builder ========\/\/\/\/\n")
+print("\/\/\/\/======== Professioanl Resume Builder ========\/\/\/\/\n")
 print("\t\t\tPERSONAL INFO\n")
 print("Lets Fill in your personal details\n")
 personal_info = {}
-#resume_role         = input_processor(input("role> "), True)
-#first_name          = input_processor(input("first_name> "), True)
-#last_name           = input_processor(input("last_name> "), True)
-#email               = input_processor(input("email> "))
-#phone               = input_processor(input("phone> "))
+resume_role         = input_processor(input("role> "), True)
+first_name          = input_processor(input("first_name> "), True)
+last_name           = input_processor(input("last_name> "), True)
+email               = input_processor(input("email> "))
+phone               = input_processor(input("phone> "))
 
-#personal_info["role"]           = resume_role
-#personal_info["first_name"]     = first_name
-#personal_info["last_name"]      = last_name
-#personal_info["phone"]          = phone
-#personal_info["email"]          = email
+personal_info["role"]       = resume_role
+personal_info["first_name"] = first_name
+personal_info["last_name"]  = last_name
+personal_info["phone"]      = phone
+personal_info["email"]      = email
 
-#print(personal_info)
+print(personal_info)
 
 print("\t\t\tEXPERIENCES\n")
 print("Lets Fill in your Work Experiences\n")
@@ -30,13 +28,13 @@ experiences = []
 more_position = True
 while more_position:
 
-    job_role    = input_processor(input("Job Title> "), True)
-    city        = input_processor(input("City> "), True)
-    company    = input_processor(input("Employer/Company> "), True)
+    job_role     = input_processor(input("Job Title> "), True)
+    city         = input_processor(input("City> "), True)
+    company      = input_processor(input("Employer/Company> "), True)
     print("When did you start this job?")
-    start_date  = input_processor(input("Hint: jan 2020> "), True)
+    start_date   = input_processor(input("Hint: jan 2020> "), True)
     
-    works_here  = input("Do work here currently(y/n)> ").lower()
+    works_here   = input("Do work here currently(y/n)> ").lower()
     if works_here in ("yes", "y", ""):
         end_date = "Current"
     else:
@@ -53,7 +51,7 @@ while more_position:
         tasks.append(task)
         
 
-    add_more_position = input("Do you want to add another position(y/n)> ").lower().strip()
+    add_more_position = input_processor(input("Do you want to add another position(y/n)> ")).lower()
     if add_more_position in ("no", "n"):
         more_position = False
 
@@ -69,3 +67,41 @@ while more_position:
     )
 
 print(experiences)
+
+
+print("\t\t\tEDUCATION\n")
+print("Lets Fill in your educational history\n")
+education = []
+edu_history = True
+while edu_history:
+
+    course       = input_processor(input("Course> "), True)
+    location     = input_processor(input("Location> "), True)
+    institution  = capitalize_sentence(input_processor(input("School/Institution> "), True))
+    print("When did you start?")
+    start_date   = input_processor(input("Hint: jan 2020> "), True)
+    
+    works_here   = input("Do you school here currently(y/n)> ").lower()
+    if works_here in ("yes", "y", ""):
+        end_date = "Current"
+    else:
+        print("When did you graduate")
+        end_date = input("Hint: dec 2020> ")
+        print("")
+  
+
+    add_institution = input_processor(input("Do you want to add another institution(y/n)> ")).lower()
+    if add_institution in ("no", "n"):
+        edu_history = False
+
+    education.append(
+        {
+            "course": course,
+            "location": location,
+            "institution": institution,
+            "start_date": start_date,
+            "end_date": end_date, 
+        }
+    )
+
+print(education)
