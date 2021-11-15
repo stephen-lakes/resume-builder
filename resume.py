@@ -8,11 +8,12 @@ print("\/\/\/\/======== Professioanl Resume Builder ========\/\/\/\/\n")
 print("\t\t\tPERSONAL INFO\n")
 print("Lets Fill in your personal details\n")
 personal_info = {}
-resume_role         = input_processor(input("\trole> "), True)
+resume_role         = capitalize_sentence(input_processor(input("\trole> "), True))
 first_name          = input_processor(input("\tfirst_name> "), True)
 last_name           = input_processor(input("\tlast_name> "), True)
 email               = input_processor(input("\temail> "))
 phone               = input_processor(input("\tphone> "))
+city                = input_processor(input("\tcity> "))
 
 personal_info["role"]       = resume_role
 personal_info["first_name"] = first_name
@@ -20,6 +21,7 @@ personal_info["last_name"]  = last_name
 personal_info["phone"]      = phone
 personal_info["email"]      = email
 
+'''
 
 print("\t\t\tEXPERIENCES\n")
 print("Lets Fill in your Work Experiences\n")
@@ -66,7 +68,7 @@ while more_position:
     )
 
 print(experiences)
-
+'''
 
 print("\t\t\tEDUCATION\n")
 print("Lets Fill in your educational history\n")
@@ -106,6 +108,7 @@ while edu_history:
 print(education)
 
 
+
 print("\t\t\tTECHNICAL SKILLS\n")
 print("\nLets Fill in your technical skills\n\t Type 'd' when you are done with this section.")
 technical_skils = []
@@ -118,10 +121,15 @@ while True:
 
 
 context = {
-    'personal_info' : personal_info,
-    'experiences'   : experiences,
-    'education_hist': education,
-    'tech_skills' : technical_skils,
+    'role'          : resume_role,
+    'first_name'    : first_name,
+    'last_name'     : last_name,
+    'email'         : email,
+    'phone'         : phone,
+    'city'          : city,
+    #'experiences'   : experiences,
+    'education'     : education,
+    'tech_skills'   : technical_skils,
 }
 
 
