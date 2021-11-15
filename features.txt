@@ -22,7 +22,15 @@ Applicants:
         },
     ]
 
-    Education:
+    Education:[
+        {
+            Course,
+            School name,
+            Start Date,
+            End Date,
+            Location
+        },
+    ]
 
     Projects:[
         {
