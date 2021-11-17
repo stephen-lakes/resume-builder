@@ -2,7 +2,7 @@ from docxtpl import DocxTemplate
 
 from utils import input_processor, capitalize_sentence
 
-doc = DocxTemplate("resume_template.docx")
+doc = DocxTemplate("template.docx")
 
 print("\/\/\/\/======== Professioanl Resume Builder ========\/\/\/\/\n")
 print("\t\t\tPERSONAL INFO\n")
