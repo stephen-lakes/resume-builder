@@ -7,21 +7,21 @@ doc = DocxTemplate("resume_template.docx")
 print("\/\/\/\/======== Professioanl Resume Builder ========\/\/\/\/\n")
 print("\t\t\tPERSONAL INFO\n")
 print("Lets Fill in your personal details\n")
-personal_info = {}
+profile = {}
 resume_role         = capitalize_sentence(input_processor(input("\trole> "), True))
 first_name          = input_processor(input("\tfirst_name> "), True)
 last_name           = input_processor(input("\tlast_name> "), True)
 email               = input_processor(input("\temail> "))
 phone               = input_processor(input("\tphone> "))
-city                = input_processor(input("\tcity> "))
+city                = capitalize_sentence(input_processor(input("\tcity e.g Lagos, Nigeria> ")))
 
-personal_info["role"]       = resume_role
-personal_info["first_name"] = first_name
-personal_info["last_name"]  = last_name
-personal_info["phone"]      = phone
-personal_info["email"]      = email
+profile["role"]       = resume_role
+profile["first_name"] = first_name
+profile["last_name"]  = last_name
+profile["phone"]      = phone
+profile["email"]      = email
+profile["city"]       = city
 
-'''
 
 print("\t\t\tEXPERIENCES\n")
 print("Lets Fill in your Work Experiences\n")
@@ -67,8 +67,7 @@ while more_position:
         }
     )
 
-print(experiences)
-'''
+
 
 print("\t\t\tEDUCATION\n")
 print("Lets Fill in your educational history\n")
@@ -91,7 +90,7 @@ while edu_history:
         print("")
   
 
-    add_institution = input_processor(input("\tDo you want to add another institution(y/n)> ")).lower()
+    add_institution = input_processor(input("\n\tDo you want to add another institution(y/n)> ")).lower()
     if add_institution in ("no", "n"):
         edu_history = False
 
@@ -105,7 +104,6 @@ while edu_history:
         }
     )
 
-print(education)
 
 
 
@@ -119,22 +117,15 @@ while True:
         else:
             technical_skils.append(command)
 
-
+dash = "-" * 113
 context = {
-    'role'          : resume_role,
-    'first_name'    : first_name,
-    'last_name'     : last_name,
-    'email'         : email,
-    'phone'         : phone,
-    'city'          : city,
-    #'experiences'   : experiences,
+    'profile'       :   profile,
+    'experiences'   : experiences,
     'education'     : education,
     'tech_skills'   : technical_skils,
+
+    'dash'           : dash,
 }
-
-
-
-
 
 doc.render(context)
 
