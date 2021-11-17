@@ -1,5 +1,5 @@
 Applicants:
-    Personal Info:
+    *Personal Info:
     {
         Firstname,
         Lastname,
@@ -8,7 +8,7 @@ Applicants:
         Resume Title
     }
     
-    Experience:[
+    *Experience:[
         {
             Company,
             Job Title,
@@ -22,7 +22,7 @@ Applicants:
         },
     ]
 
-    Education:[
+    *Education:[
         {
             Course,
             School name,
@@ -41,4 +41,4 @@ Applicants:
             Live Preview
         },
     ]
-    Technical Skills
+    (BUG)Technical Skills
