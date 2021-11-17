@@ -10,5 +10,3 @@ def capitalize_sentence(sentence:str) -> str:
 def clean_input(text):
     pass
 
-
-print(capitalize_sentence("university of lagos"))
