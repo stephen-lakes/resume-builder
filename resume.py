@@ -4,7 +4,7 @@ from utils import input_processor, capitalize_sentence
 
 doc = DocxTemplate("template.docx")
 
-print("\/\/\/\/======== Professioanl Resume Builder ========\/\/\/\/\n")
+print("\/\/\/\/======== PROFESSIONAL RESUME BUILDER ========\/\/\/\/\n")
 print("\t\t\tPERSONAL INFO\n")
 print("Lets Fill in your personal details\n")
 profile = {}
@@ -52,7 +52,7 @@ while more_position:
         tasks.append(task)
         
 
-    add_more_position = input_processor(input("\tDo you want to add another position(y/n)> ")).lower()
+    add_more_position = input_processor(input("\n\tDo you want to add another position(y/n)> ")).lower()
     if add_more_position in ("no", "n"):
         more_position = False
 
@@ -105,6 +105,34 @@ while edu_history:
     )
 
 
+print("\t\t\tPROJECTS\n")
+print("What projects have you take on\n")
+projects = []
+more_projects = True
+while more_projects:
+
+    title           = input_processor(input("\tProject Title> "), True)
+    description     = input_processor(input("\tDescription> "), True)
+    github_link     = input_processor(input("\tGithub Link> "), True)
+    tech_stack      = input_processor(input("\tTech Stacks Used.e.g python,docxtpl, xml> "), True)
+    live_preview    = input_processor(input("\tLive preview> "), True)
+    
+
+    add_projects = input_processor(input("\n\tDo you want to add another project(y/n)> ")).lower()
+    if add_projects in ("no", "n"):
+        more_projects = False
+
+
+    projects.append(
+        {
+            "title": title,
+            "description": description,
+            "link": github_link,
+            "stack": tech_stack,
+            "preview": live_preview, 
+        }
+    )
+
 
 
 print("\t\t\tTECHNICAL SKILLS\n")
@@ -123,6 +151,7 @@ context = {
     'experiences'   : experiences,
     'education'     : education,
     'tech_skills'   : technical_skils,
+    'projects'      : projects,
 
     'dash'           : dash,
 }
