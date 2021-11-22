@@ -1,6 +1,6 @@
 from docxtpl import DocxTemplate
 
-from utils import input_processor, capitalize_sentence
+from utils import clean_input
 
 doc = DocxTemplate("template.docx")
 
@@ -8,12 +8,13 @@ print("\/\/\/\/======== PROFESSIONAL RESUME BUILDER ========\/\/\/\/\n")
 print("\t\t\tPERSONAL INFO\n")
 print("Lets Fill in your personal details\n")
 profile = {}
-resume_role         = capitalize_sentence(input_processor(input("\trole> "), True))
-first_name          = input_processor(input("\tfirst_name> "), True)
-last_name           = input_processor(input("\tlast_name> "), True)
-email               = input_processor(input("\temail> "))
-phone               = input_processor(input("\tphone> "))
-city                = capitalize_sentence(input_processor(input("\tcity e.g Lagos, Nigeria> ")))
+resume_role         = clean_input(input("\trole> "), True)
+first_name          = clean_input(input("\tfirst_name> "), True)
+last_name           = clean_input(input("\tlast_name> "), True)
+email               = clean_input(input("\temail> "))
+phone               = clean_input(input("\tphone> "))
+city                = clean_input(input("\tcity e.g Lagos, Nigeria> "), True)
+summary             = clean_input(input("\tSummary> "), True)
 
 profile["role"]       = resume_role
 profile["first_name"] = first_name
@@ -29,18 +30,18 @@ experiences = []
 more_position = True
 while more_position:
 
-    job_role     = input_processor(input("\tJob Title> "), True)
-    city         = input_processor(input("\tCity> "), True)
-    company      = input_processor(input("\tEmployer/Company> "), True)
+    job_role     = clean_input(input("\tJob Title> "), True)
+    city         = clean_input(input("\tCity> "), True)
+    company      = clean_input(input("\tEmployer/Company> "), True)
     print("When did you start this job?")
-    start_date   = input_processor(input("\tHint: jan 2020> "), True)
+    start_date   = clean_input(input("\tHint: jan 2020> "), True)
     
-    works_here   = input("\tDo work here currently(y/n)> ").lower()
+    works_here   = input("\tDo work here currently(y/n)?> ").lower()
     if works_here in ("yes", "y", ""):
         end_date = "Current"
     else:
-        print("When did you quit this job")
-        end_date = input("\tHint: dec 2020> ")
+        print("When did you quit this job?")
+        end_date = clean_input(input("\tHint: dec 2020> "), True)
         print("")
 
     print("\nNice! Now let's describe what you did \n Type 'd' when you are done with the accomplishments")
@@ -52,7 +53,7 @@ while more_position:
         tasks.append(task)
         
 
-    add_more_position = input_processor(input("\n\tDo you want to add another position(y/n)> ")).lower()
+    add_more_position = clean_input(input("\n\tDo you want to add another position(y/n)?> ")).lower()
     if add_more_position in ("no", "n"):
         more_position = False
 
@@ -75,22 +76,22 @@ education = []
 edu_history = True
 while edu_history:
 
-    course       = input_processor(input("\tCourse> "), True)
-    location     = input_processor(input("\tLocation> "), True)
-    institution  = capitalize_sentence(input_processor(input("\tSchool/Institution> "), True))
+    course       = clean_input(input("\tCourse> "), True)
+    location     = clean_input(input("\tLocation: e.g Akoka,Lagos> "), True)
+    institution  = clean_input(input("\tSchool/Institution> "), True)
     print("When did you start?")
-    start_date   = input_processor(input("\tHint: jan 2020> "), True)
+    start_date   = clean_input(input("\tHint: jan 2020> "), True)
     
     works_here   = input("\tDo you school here currently(y/n)> ").lower()
     if works_here in ("yes", "y", ""):
         end_date = "Current"
     else:
-        print("When did you graduate")
-        end_date = input("\tHint: dec 2020> ")
+        print("When did you graduate?")
+        end_date = clean_input(input("\tHint: dec 2020> "), True)
         print("")
   
 
-    add_institution = input_processor(input("\n\tDo you want to add another institution(y/n)> ")).lower()
+    add_institution = clean_input(input("\n\tDo you want to add another institution(y/n)?> ")).lower()
     if add_institution in ("no", "n"):
         edu_history = False
 
@@ -111,14 +112,14 @@ projects = []
 more_projects = True
 while more_projects:
 
-    title           = input_processor(input("\tProject Title> "), True)
-    description     = input_processor(input("\tDescription> "), True)
-    github_link     = input_processor(input("\tGithub Link> "), True)
-    tech_stack      = input_processor(input("\tTech Stacks Used.e.g python,docxtpl, xml> "), True)
-    live_preview    = input_processor(input("\tLive preview> "), True)
+    title           = clean_input(input("\tProject Title> "), True)
+    description     = clean_input(input("\tDescription> "), True)
+    github_link     = clean_input(input("\tGithub Link> "))
+    tech_stack      = clean_input(input("\tTech Stacks Used.e.g python,docxtpl, xml> "), True)
+    live_preview    = clean_input(input("\tLive preview> "))
     
 
-    add_projects = input_processor(input("\n\tDo you want to add another project(y/n)> ")).lower()
+    add_projects = clean_input(input("\n\tDo you want to add another project(y/n)?> ")).lower()
     if add_projects in ("no", "n"):
         more_projects = False
 
@@ -159,7 +160,7 @@ context = {
 doc.render(context)
 
 try:
-    doc.save("resume.docx")
+    doc.save(f"{first_name}{last_name}.docx")
 except:
     print("An error occured saving the file")
     remane = input("Remane the file to get past this error> ")

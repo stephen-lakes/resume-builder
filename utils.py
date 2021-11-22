@@ -1,12 +1,8 @@
-def input_processor(input_string:str, cap=False) -> str:
+def clean_input(input_str:str, cap=False):
     if cap:
-        return input_string.strip().capitalize()
-    return input_string.strip()
+        return ' '.join([word.capitalize().strip() for word in input_str.split()])
+    return ' '.join([word.strip() for word in input_str.split()])
 
-def capitalize_sentence(sentence:str) -> str:
-    return ' '.join([word.capitalize() for word in sentence.split()])
-    
-
-def clean_input(text):
-    pass
+def clean_location_field(input_str:str):
+    return ','.join([ch.strip().capitalize() for ch in input_str.split(",")])
 
