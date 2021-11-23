@@ -1,6 +1,6 @@
 from docxtpl import DocxTemplate
 
-from utils import clean_input
+from utils import clean_input, clean_location_field
 
 doc = DocxTemplate("template.docx")
 
@@ -14,7 +14,7 @@ last_name           = clean_input(input("\tlast_name> "), True)
 email               = clean_input(input("\temail> "))
 phone               = clean_input(input("\tphone> "))
 city                = clean_input(input("\tcity e.g Lagos, Nigeria> "), True)
-summary             = clean_input(input("\tSummary> "), True)
+summary             = clean_location_field(input("\tSummary> "))
 
 profile["role"]       = resume_role
 profile["first_name"] = first_name
@@ -148,7 +148,8 @@ while True:
 
 dash = "-" * 113
 context = {
-    'profile'       :   profile,
+    'profile'       : profile,
+    "summary"       : summary,
     'experiences'   : experiences,
     'education'     : education,
     'tech_skills'   : technical_skils,
